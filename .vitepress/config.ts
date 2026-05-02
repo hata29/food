@@ -20,7 +20,7 @@ function listMarkdown(dir: string) {
 
 export default defineConfig({
   title: "Manami's Recipe Kit",
-  description: '自炊レシピ・週次献立・買い物リスト',
+  description: '自炊レシピ・週次メニュー（献立＋買い物リスト統合）',
   lang: 'ja-JP',
   base: process.env.BASE_PATH || '/',
   cleanUrls: true,
@@ -31,8 +31,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'レシピ', link: '/recipes/' },
-      { text: '献立', link: '/meal-plans/' },
-      { text: '買い物リスト', link: '/shopping-lists/' },
+      { text: '週次', link: '/weekly/' },
     ],
 
     sidebar: [
@@ -42,14 +41,9 @@ export default defineConfig({
         items: listMarkdown('recipes'),
       },
       {
-        text: '📅 週次献立',
+        text: '📅 週次メニュー',
         collapsed: false,
-        items: listMarkdown('meal-plans'),
-      },
-      {
-        text: '🛒 買い物リスト',
-        collapsed: false,
-        items: listMarkdown('shopping-lists'),
+        items: listMarkdown('weekly'),
       },
       {
         text: '📚 参考レシピ',

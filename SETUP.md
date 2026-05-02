@@ -6,7 +6,7 @@
 
 ## ✅ 既に完了している作業（外出中に実施）
 
-- [x] `recipes-kit` を `~/projects/life/cook` に移動
+- [x] `recipes-kit` を `~/projects/life/food` に移動
 - [x] `git init` + 初回コミット（ローカルのみ）
 - [x] VitePress 導入（`package.json` + `.vitepress/config.ts`）
 - [x] サイドバー・トップページ・カテゴリindex.md設定
@@ -20,7 +20,7 @@
 ### 1-1. GitHub CLIで作成（推奨）
 
 ```bash
-cd ~/projects/life/cook
+cd ~/projects/life/food
 
 # GitHub CLI 未インストールなら
 brew install gh
@@ -30,19 +30,19 @@ gh auth login
 # → GitHub.com / HTTPS / Login with web browser を選択
 
 # repo作成 + push（publicでOKと言ってたのでpublic）
-gh repo create cook --public --source=. --remote=origin --push
+gh repo create food --public --source=. --remote=origin --push
 ```
 
 ### 1-2. もしくはWebで手動
 
 1. https://github.com/new で新規リポジトリ作成
-   - Repository name: `cook`
+   - Repository name: `food`
    - Public
    - **READMEなどは追加しない**（既にローカルにあるため）
 2. ローカルから push:
    ```bash
-   cd ~/projects/life/cook
-   git remote add origin https://github.com/<YOUR_USERNAME>/cook.git
+   cd ~/projects/life/food
+   git remote add origin https://github.com/<YOUR_USERNAME>/food.git
    git push -u origin main
    ```
 
@@ -52,19 +52,19 @@ gh repo create cook --public --source=. --remote=origin --push
 
 ### 2-1. Pagesを有効化
 
-1. GitHub上で `cook` リポジトリ → **Settings** → **Pages**
+1. GitHub上で `food` リポジトリ → **Settings** → **Pages**
 2. Source を **GitHub Actions** に変更（"Deploy from a branch" ではない）
 
 ### 2-2. リポジトリ名がデフォルト URL のサブパスになるので、`BASE_PATH` を設定
 
-GitHub Actions 上で `BASE_PATH=/cook/` を環境変数として渡す必要がある。
+GitHub Actions 上で `BASE_PATH=/food/` を環境変数として渡す必要がある。
 
 1. リポジトリ → **Settings** → **Secrets and variables** → **Actions**
 2. **Variables** タブ → **New repository variable**
-3. Name: `BASE_PATH`、Value: `/cook/`（前後のスラッシュ忘れずに）
+3. Name: `BASE_PATH`、Value: `/food/`（前後のスラッシュ忘れずに）
 4. Save
 
-> **note**: リポジトリ名を `cook` 以外にする場合は `/<repo-name>/` に合わせる。
+> **note**: リポジトリ名を `food` 以外にする場合は `/<repo-name>/` に合わせる。
 
 ### 2-3. 再デプロイ
 
@@ -74,7 +74,7 @@ GitHub Actions 上で `BASE_PATH=/cook/` を環境変数として渡す必要が
 gh workflow run deploy.yml
 ```
 
-完了後、`https://<YOUR_USERNAME>.github.io/cook/` にサイトが公開される。
+完了後、`https://<YOUR_USERNAME>.github.io/food/` にサイトが公開される。
 スマホでブックマークしておく。
 
 ---
@@ -85,12 +85,12 @@ gh workflow run deploy.yml
 
 1. iOS/AndroidのClaudeアプリ → 設定 → Connectors
 2. GitHub を有効化
-3. リポジトリアクセス：`cook` リポジトリにアクセス許可
+3. リポジトリアクセス：`food` リポジトリにアクセス許可
 
 ### 3-2. 試しに話しかけてみる
 
 スマホClaudeアプリで：
-- 「`cook` リポジトリの recipes/トマトとピーマンのキーマ.md 見せて」
+- 「`food` リポジトリの recipes/トマトとピーマンのキーマ.md 見せて」
 - 「冷蔵庫になす・ピーマン・ひき肉あるんだけど何作れる？」
 
 > **書き込み（コミット）対応の確認**：上記が動いたら、次に
@@ -104,7 +104,7 @@ gh workflow run deploy.yml
 PC で：
 
 ```bash
-cd ~/projects/life/cook
+cd ~/projects/life/food
 claude
 ```
 
@@ -148,4 +148,4 @@ npm run build
 
 - レシピ追加：`recipes/<料理名>.md` を作って push（CLAUDE.mdのフォーマット参照）
 - 献立作成：「今週の献立組んで」とClaude（PC/スマホ）に話しかける
-- 不要なら：`gh repo delete cook` で消せる
+- 不要なら：`gh repo delete food` で消せる
