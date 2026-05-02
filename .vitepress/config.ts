@@ -18,6 +18,30 @@ function listMarkdown(dir: string) {
     }))
 }
 
+function listMarkdownTree(dir: string) {
+  const fullPath = resolve(projectRoot, dir)
+  if (!existsSync(fullPath)) return []
+  const entries = readdirSync(fullPath, { withFileTypes: true })
+  const groups = entries
+    .filter((e) => e.isDirectory())
+    .sort((a, b) => a.name.localeCompare(b.name, 'ja'))
+    .map((e) => ({
+      text: e.name,
+      collapsed: false,
+      items: listMarkdown(`${dir}/${e.name}`),
+    }))
+    .filter((g) => g.items.length > 0)
+  const flat = listMarkdown(dir)
+  return [...groups, ...flat]
+}
+
+function restaurantsSection() {
+  const tree = listMarkdownTree('restaurants')
+  return tree.length > 0
+    ? { text: '🍜 外食リスト', collapsed: false, items: tree }
+    : { text: '🍜 外食リスト', link: '/restaurants/' }
+}
+
 export default defineConfig({
   title: "Manami's Recipe Kit",
   description: '自炊レシピ・週次メニュー（献立＋買い物リスト統合）',
@@ -26,11 +50,12 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   ignoreDeadLinks: true,
-  srcExclude: ['CLAUDE.md', 'README.md', 'SETUP.md', '**/node_modules/**'],
+  srcExclude: ['CLAUDE.md', 'README.md', 'SETUP.md', '.handover.md', '**/node_modules/**'],
 
   themeConfig: {
     nav: [
       { text: 'レシピ', link: '/recipes/' },
+      { text: '外食', link: '/restaurants/' },
       { text: '週次', link: '/weekly/' },
     ],
 
@@ -40,6 +65,7 @@ export default defineConfig({
         collapsed: false,
         items: listMarkdown('recipes'),
       },
+      restaurantsSection(),
       {
         text: '📅 週次メニュー',
         collapsed: false,
