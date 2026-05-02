@@ -29,17 +29,21 @@ features:
 
 ## 使い方
 
-### スマホから
-ClaudeアプリでGitHub Connector経由：
+### スマホから（閲覧・相談）
+Claudeアプリ または スマホブラウザの claude.ai（GitHub Connector経由）：
 
-- 「URLのレシピ整形してrecipesに保存して」
-- 「冷蔵庫になす・ピーマン・ひき肉あるんだけど何作れる？」
-- 「今週の献立組んで」
+- 「ペペロンのレシピ見せて」
+- 「冷蔵庫に大葉・しらす・ベーコンあるけど何作れる？」
+- 「今週の献立どうなってる？」
 
-### PCから
+または、このVitePressサイトをホーム画面に追加してサクッと閲覧。
+
+> 書き込み（追加・更新・コミット）はPC側で。ClaudeモバイルアプリとWeb版のGitHub Connectorは現状コミット未対応のため。
+
+### PCから（書き込み全般）
 ```bash
 cd ~/projects/life/food
 claude
 ```
 
-詳細な運用ルールは [CLAUDE.md](https://github.com/) 参照。
+レシピ追加、メモ追記、献立組成、コミット&pushまで一気通貫。詳細な運用ルールは CLAUDE.md 参照。
