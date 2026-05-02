@@ -76,6 +76,11 @@ export default defineConfig({
         collapsed: true,
         items: listMarkdown('references'),
       },
+      {
+        text: '📥 メモ・アイデア',
+        collapsed: true,
+        items: listMarkdown('inbox'),
+      },
     ],
 
     search: {
